@@ -25795,3 +25795,49 @@ Processing by CitiesController#index as HTML
 Completed 200 OK in 111ms (Views: 108.2ms | ActiveRecord: 0.3ms)
 
 
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from load at /usr/local/bin/rake:23)
+  [1m[35m (8.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5168794849566389475);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5168794849566389475)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/holidays" for ::1 at 2017-11-09 23:22:03 -0300
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from block (3 levels) in <class:Railtie> at /usr/local/lib/ruby/gems/2.4.0/gems/activerecord-5.0.6/lib/active_record/railtie.rb:113)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HolidaysController#index as HTML
+  Rendering holidays/index.html.erb within layouts/application
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered holidays/_form.html.erb (28.9ms)
+  Rendered holidays/index.html.erb within layouts/application (48.4ms)
+  Rendered partials/_sidenav.html.erb (0.6ms)
+  Rendered partials/_topnav.html.erb (0.6ms)
+  Rendered partials/_footer.html.erb (0.5ms)
+Completed 200 OK in 665ms (Views: 632.8ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/holidays" for ::1 at 2017-11-09 23:22:09 -0300
+Processing by HolidaysController#index as HTML
+  Rendering holidays/index.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  Rendered holidays/_form.html.erb (3.5ms)
+  Rendered holidays/index.html.erb within layouts/application (7.9ms)
+  Rendered partials/_sidenav.html.erb (0.6ms)
+  Rendered partials/_topnav.html.erb (0.6ms)
+  Rendered partials/_footer.html.erb (0.5ms)
+Completed 200 OK in 101ms (Views: 98.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/css/calendar/fullcalendar.min.css" for ::1 at 2017-11-09 23:22:09 -0300
+Started GET "/holidays.json" for ::1 at 2017-11-09 23:22:09 -0300
+Processing by HolidaysController#index as JSON
+  Rendering holidays/index.json.jbuilder
+  [1m[36mHoliday Load (7.9ms)[0m  [1m[34mSELECT "holidays".* FROM "holidays"[0m
+  Rendered holidays/index.json.jbuilder (12.7ms)
+Completed 200 OK in 29ms (Views: 17.7ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/assets/css/calendar/fullcalendar.min.css" for ::1 at 2017-11-09 23:23:53 -0300

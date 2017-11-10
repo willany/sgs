@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 20171107010130) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "cnpj"
-    t.index ["cnpj"], name: "index_cities_on_cnpj", unique: true
+    t.index ["cnpj"], name: "index_cities_on_cnpj", unique: true, using: :btree
   end
 
   create_table "holidays", force: :cascade do |t|
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20171107010130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
-    t.index ["city_id"], name: "index_holidays_on_city_id"
+    t.index ["city_id"], name: "index_holidays_on_city_id", using: :btree
   end
 
   create_table "micro_areas", force: :cascade do |t|
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20171107010130) do
     t.integer  "usf_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["usf_id"], name: "index_micro_areas_on_usf_id"
+    t.index ["usf_id"], name: "index_micro_areas_on_usf_id", using: :btree
   end
 
   create_table "professional_types", force: :cascade do |t|
@@ -53,9 +56,9 @@ ActiveRecord::Schema.define(version: 20171107010130) do
     t.integer  "microArea_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.index ["microArea_id"], name: "index_professionals_on_microArea_id"
-    t.index ["professionalType_id"], name: "index_professionals_on_professionalType_id"
-    t.index ["specialty_id"], name: "index_professionals_on_specialty_id"
+    t.index ["microArea_id"], name: "index_professionals_on_microArea_id", using: :btree
+    t.index ["professionalType_id"], name: "index_professionals_on_professionalType_id", using: :btree
+    t.index ["specialty_id"], name: "index_professionals_on_specialty_id", using: :btree
   end
 
   create_table "specialties", force: :cascade do |t|
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 20171107010130) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "area"
-    t.index ["city_id"], name: "index_usfs_on_city_id"
+    t.index ["city_id"], name: "index_usfs_on_city_id", using: :btree
   end
 
 end
