@@ -1,0 +1,241 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Feriados</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="x_content">
+
+        
+
+
+        <div class="form-group">
+          <label for="first-name">
+            Município
+           <span class="required">*</span>
+          </label>
+          <div>
+            <%= select_tag 'city_id', options_for_select(City.all.collect{ |u| [u.name, u.id] }), :onchange => 'on_change_city()' %>
+          </div>
+        </div>
+
+        <div id='calendar'></div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+    
+
+
+<!-- Start Calendar modal -->
+<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Cadastrar Feriado</h4>
+      </div>
+      <div class="modal-body">
+        <div id="testmodal" style="padding: 5px 20px;">
+          <%= render 'form' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary antosubmit">Salvar</button> -->
+        <input type="submit" class="btn btn-primary" onclick="submit_form()" onname="commit" value="Salvar" data-disable-with="Create Holiday">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel2">Apagar Feriado</h4>
+      </div>
+      <div class="modal-body">
+
+        <div id="testmodal2" style="padding: 5px 20px;">
+          <a id="delete_holiday" data-confirm="Deseja realmente apagar?" rel="nofollow" data-method="delete">Apagar</a>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary antosubmit2">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+
+<!-- End Calendar modal -->
+    
+<div id="custom_notifications" class="custom-notifications dsp_none">
+  <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+  </ul>
+  <div class="clearfix"></div>
+  <div id="notif-group" class="tabbed_notifications"></div>
+</div>
+
+
+<script>
+    $(window).load(function() {
+
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+      var started;
+      var categoryClass;
+
+   
+
+var calendar = $('#calendar').fullCalendar({
+    ignoreTimezone: false,
+    selectable: true,
+    selectHelper: true,
+    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    // titleFormat: {
+    //     month: 'MMMM yyyy',
+    //     week: "d[ MMMM][ yyyy]{ - d MMMM yyyy}",
+    //     day: 'dddd, d MMMM yyyy'
+    // },
+    events:[],
+    columnFormat: {
+        month: 'ddd',
+        week: 'ddd d',
+        day: ''
+    },
+    axisFormat: 'H:mm',
+    timeFormat: {
+        '': 'H:mm',
+        agenda: 'H:mm{ - H:mm}'
+    },
+    buttonText: {
+        prev: "Anterior",
+        next: "Próximo",
+        today: "Hoje",
+        month: "Mês",
+        week: "Semana",
+        day: "Dia"
+    },
+    select: function(start, end, allDay) {
+          $('#fc_create').click();
+
+          started = start;
+          ended = end
+
+          console.log(moment(start).format("DD-MM-YYYY"));
+          $('.holiday_date').text(moment(start).format("DD/MM/YYYY"));
+
+          $("#holiday_date_1i :selected").text(moment(start).format("YYYY"));
+          $("#holiday_date_1i").val(moment(start).format("YYYY")); 
+          $("#holiday_date_2i :selected").text(moment(start).format("M"));
+          console.log(moment(start).format("D"));
+          //$("#holiday_date_3i option:selected").text(moment(start).format("DD"));
+          $("#holiday_date_3i").val(moment(start).format("D")); 
+
+           $('#holiday_date_1i').hide();
+           $('#holiday_date_2i').hide();
+           $('#holiday_date_3i').hide();
+           $('.actions').hide();
+
+
+          $(".antosubmit").on("click", function() {
+            var title = $("#title").val();
+            if (end) {
+              ended = end
+            }
+            categoryClass = $("#event_type").val();
+
+            if (title) {
+              calendar.fullCalendar('renderEvent', {
+                  title: title,
+                  start: started,
+                  end: end,
+                  allDay: allDay
+                },
+                true // make the event "stick"
+              );
+            }
+            $('#title').val('');
+            calendar.fullCalendar('unselect');
+
+            $('.antoclose').click();
+
+            return false;
+          });
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+          //alert(calEvent.title, jsEvent, view);
+
+          $('#fc_edit').click();
+          //$('#title2').val(calEvent.title);
+          console.log(calEvent.id);
+          $('#delete_holiday').attr('href','/holidays/'+calEvent.id)
+          //$("#holiday_name").val(calEvent.title);
+          categoryClass = $("#event_type").val();
+
+          $(".antosubmit2").on("click", function() {
+            calEvent.title = $("#title2").val();
+
+            calendar.fullCalendar('updateEvent', calEvent);
+            $('.antoclose2').click();
+          });
+          calendar.fullCalendar('unselect');
+        },
+        editable: true
+      });
+  
+
+     $(function(){ 
+      $.getJSON('holidays.json', function(holidays) { 
+        for(var holiday in holidays) {
+           console.log(holiday, holidays[holiday]);
+           calendar.fullCalendar('renderEvent', {
+            id: holidays[holiday]['id'],
+            title: holidays[holiday]['name'],
+            start: holidays[holiday]['date'],
+            end: holidays[holiday]['date'],
+            allDay: true
+
+          },
+            true // make the event "stick"
+          );
+           
+
+          
+        }
+      });
+    });
+
+});
+
+    function submit_form(){
+      $('#new_holiday').submit();
+    }
+   
+
+  </script>
+

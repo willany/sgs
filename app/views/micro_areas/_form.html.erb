@@ -1,0 +1,53 @@
+
+<div class="col-md-8 center-margin">
+                
+<%= form_for(@micro_area, html: {class: "form-horizontal form-label-left"}) do |f| %>
+  <% if @micro_area.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@micro_area.errors.count, "error") %> prohibited this micro_area from being saved:</h2>
+
+      <ul>
+      <% @micro_area.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="first-name">
+      Micro área
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.number_field :name, class: "form-control", min: 0, max: 20, required: "required" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="first-name">
+      USF
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.select 'usf_id', options_for_select(Usf.all.collect{ |u| [u.nome, u.id] }) %>
+    </div>
+  </div>
+
+  <div class="ln_solid"></div>
+
+  <div class="form-group">
+    <div class="col-md-9 col-md-offset-3">
+      <button type="button" onClick="history.go(-1)" class="btn btn-primary">Cancelar</button>
+      <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
+  </div>
+
+<% end %>
+
+<br>
+</div>
+<!-- /page content -->
+
+
+

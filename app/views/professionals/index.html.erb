@@ -1,0 +1,65 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Profissionais</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:600px;">
+          <div class="x_title">
+
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>CRM</th>
+                    <th>Especialidade</th>
+                    <th>Coren</th>
+                    <th>Matricula</th>
+                    <th>Micro Área</th>
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @professionals.each do |professional| %>
+                    <tr>
+                      <td><%= professional.nome %></td>
+                      <td><%= professional.professionalType.name %></td>
+                      <td><%= professional.crm %></td>
+                      <td><%= professional.specialty.name %></td>
+                      <td><%= professional.coren %></td>
+                      <td><%= professional.matricula %></td>
+                      <td><%= professional.microArea.name %></td>            
+                      <td><%= link_to 'Exibir', professional %> <i class="fa fa-search-plus" aria-hidden="true"></i></td>
+                      <td><%= link_to 'Editar', edit_professional_path(professional) %> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                      <td><%= link_to 'Apagar', professional, method: :delete, data: { confirm: 'Deseja realmente apagar?' } %> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            
+            <br>
+
+            <%= link_to 'Cadastrar Profissional', new_professional_path,  class: "btn btn-dark" %>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+

@@ -1,0 +1,72 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>USFs</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:600px;">
+          <div class="x_title">
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Nome fantasia</th>
+                  <th>Área</th>
+                  <th>Cnes</th>
+                  <th>Telefone</th>
+                  <th>Bairro</th>
+                  <th>Cep</th>
+                  <th>Logradouro</th>
+                  <th>Numero</th>
+                  <th>Complemento</th>
+                  <th>Ponto de referencia</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @usfs.each do |usf| %>
+                  <tr>
+                    <td><%= usf.nome %></td>
+                    <td><%= usf.nome_fantasia %></td>
+                    <td><%= usf.area %></td>
+                    <td><%= usf.cnes %></td>
+                    <td><%= usf.telefone %></td>
+                    <td><%= usf.bairro %></td>
+                    <td><%= usf.cep %></td>
+                    <td><%= usf.logradouro %></td>
+                    <td><%= usf.numero %></td>
+                    <td><%= usf.complemento %></td>
+                    <td><%= usf.ponto_de_referencia %></td>            
+                    <td><%= link_to 'Exibir', usf %> <i class="fa fa-search-plus" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Editar', edit_usf_path(usf) %> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Apagar', usf, method: :delete, data: { confirm: 'Deseja realmente apagar?' } %> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            
+            <br>
+
+            <%= link_to 'Cadastrar USF', new_usf_path,  class: "btn btn-dark" %>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+

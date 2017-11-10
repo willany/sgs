@@ -1,0 +1,56 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Micro Áreas</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:600px;">
+          <div class="x_title">
+
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Usf</th>
+                    <th>Área</th>
+                    <th>Micro Área</th>
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                <% @micro_areas.each do |micro_area| %>
+                  <tr>
+                    <td><%= micro_area.usf.nome %></td>
+                    <td><%= micro_area.usf.area %></td>
+                    <td><%= micro_area.name %></td>
+                    <td><%= link_to 'Exibir', micro_area %> <i class="fa fa-search-plus" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Editar', edit_micro_area_path(micro_area) %> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Apagar', micro_area, method: :delete, data: { confirm: 'Deseja realmente apagar?' } %> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            
+            <br>
+
+            <%= link_to 'Cadastrar Micro Área', new_micro_area_path,  class: "btn btn-dark" %>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+

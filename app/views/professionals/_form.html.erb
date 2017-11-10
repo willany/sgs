@@ -1,0 +1,100 @@
+
+<div class="col-md-8 center-margin">
+                
+<%= form_for(@professional, html: {class: "form-horizontal form-label-left"}) do |f| %>
+  <% if @professional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@professional.errors.count, "error") %> prohibited this professional from being saved:</h2>
+
+      <ul>
+      <% @professional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="first-name">
+      Nome
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.text_field :nome, class: "form-control", required: "required" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="first-name">
+      Tipo
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.select 'professionalType_id', options_for_select(ProfessionalType.all.collect{ |u| [u.name, u.id] }) %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="first-name">
+      CRM
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.text_field :crm, class: "form-control", required: "required" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="first-name">
+      Especialidade
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.select 'specialty_id', options_for_select(Specialty.all.collect{ |u| [u.name, u.id] }) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="first-name">
+      Coren
+    </label>
+    <div>
+      <%= f.text_field :coren, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="first-name">
+      Matricula
+    </label>
+    <div>
+      <%= f.text_field :matricula, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="first-name">
+      Micro Área
+     <span class="required">*</span>
+    </label>
+    <div>
+      <%= f.select 'microArea_id', options_for_select(MicroArea.all.collect{ |u| [u.name, u.id] }) %>
+    </div>
+  </div>
+
+
+  <div class="ln_solid"></div>
+
+  <div class="form-group">
+    <div class="col-md-9 col-md-offset-3">
+      <button type="button" onClick="history.go(-1)" class="btn btn-primary">Cancelar</button>
+      <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
+  </div>
+
+<% end %>
+
+<br>
+</div>
+<!-- /page content -->

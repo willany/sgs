@@ -1,0 +1,52 @@
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Municípios</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:600px;">
+          <div class="x_title">
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Nome Município</th>
+                  <th>CNPJ</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cities.each do |city| %>
+                  <tr>
+                    <td><%= city.name %></td>
+                    <td><%= city.cnpj %></td>
+                    <td><%= link_to 'Exibir', city %> <i class="fa fa-search-plus" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Editar', edit_city_path(city) %> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                    <td><%= link_to 'Apagar', city, method: :delete, data: { confirm: 'Deseja realmente apagar?' } %> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            
+            <br>
+
+            <%= link_to 'Cadastrar Município', new_city_path,  class: "btn btn-dark" %>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  professionalType: one
+  crm: MyString
+  specialty: one
+  coren: MyString
+  matricula: MyString
+  microArea: one
+
+two:
+  nome: MyString
+  professionalType: two
+  crm: MyString
+  specialty: two
+  coren: MyString
+  matricula: MyString
+  microArea: two

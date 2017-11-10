@@ -1,0 +1,62 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Profissional</h3>
+      </div>
+
+     
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:600px;">
+          <div class="x_title">
+            <h2>Listar Profissional</h2>
+
+            <br>
+
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>CRM</th>
+                    <th>Especialidade</th>
+                    <th>Coren</th>
+                    <th>Matricula</th>
+                    <th>Micro Área</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                      <td><%= @professional.nome %></td>
+                      <td><%= @professional.professionalType.name %></td>
+                      <td><%= @professional.crm %></td>
+                      <td><%= @professional.specialty.name %></td>
+                      <td><%= @professional.coren %></td>
+                      <td><%= @professional.matricula %></td>
+                      <td><%= @professional.microArea.name %></td>            
+              </tbody>
+            </table>
+
+
+            <%= link_to 'Editar', edit_professional_path(@professional) %> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+            <%= link_to 'Back', professionals_path %> <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            
+            <br>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
